@@ -1,6 +1,6 @@
 # Imagineshop
 
-Site fictício de e-commerce para estudos de criação de uma API e a texnologia NextJs. Site em produção...
+Site fictício de e-commerce para estudos de criação de uma API e a tecnologia NextJs. Site em produção...
 </br> </br> </br>
 
 
