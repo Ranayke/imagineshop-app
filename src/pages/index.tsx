@@ -1,29 +1,12 @@
-import styles from "../styles/Home.module.css";
-import Head from "next/head";
-import { NextPage } from "next";
-import Link from "next/link";
+import Header from '@/components/Header'
+import Head from 'next/head'
 
-const Home: NextPage = () => {
+
+export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Home</title>
-        <meta name="description" content="Gener" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <ul>
-          <li>
-            <Link href="about">Sobre</Link>
-          </li>
-          <li>
-            <Link href="product">Produto</Link>
-          </li>
-        </ul>
-      </main>
-    </div>
-  );
-};
-
-export default Home;
+    <>
+    <Header />
+    <h1>Home works</h1>
+    </>
+  )
+}
