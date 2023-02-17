@@ -23,7 +23,6 @@ export const MenuList = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  font-size: 16px;
   font-weight: 700;
   a {
     text-decoration: none;
