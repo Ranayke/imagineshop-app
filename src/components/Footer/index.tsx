@@ -1,5 +1,17 @@
 import Image from "next/image";
-import { Contact, FooterContainer, SocialNetworksList, StyledFooter } from "./styles";
+import {
+  Contact,
+  FooterContainer,
+  SocialNetworkIcon,
+  SocialNetworksList,
+  StyledFooter,
+} from "./styles";
+
+import {
+  faFacebookSquare,
+  faInstagram,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 import Logo from "../../assets/logo.png";
 
@@ -14,7 +26,9 @@ const Footer = () => {
           Florianópolis/SC
         </Contact>
         <SocialNetworksList>
-            
+          <SocialNetworkIcon icon={faFacebookSquare} />
+          <SocialNetworkIcon icon={faInstagram} />
+          <SocialNetworkIcon icon={faYoutube} />
         </SocialNetworksList>
       </FooterContainer>
     </StyledFooter>
