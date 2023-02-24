@@ -12,7 +12,7 @@ export const FooterContainer = styled.div`
     ${Container};
     display: grid;
     grid-template-columns: 8.125rem auto 8.125rem;
-    padding: 2.5rem;
+    padding: 2.5rem 0;
 `
 
 export const Contact = styled.p`
