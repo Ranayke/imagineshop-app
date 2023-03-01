@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledFooter = styled.footer`
-  width: 100vw;
   height: 12.5rem;
   background-color: #f4f4f4;
 `;
@@ -12,7 +11,7 @@ export const FooterContainer = styled.div`
     ${Container};
     display: grid;
     grid-template-columns: 8.125rem auto 8.125rem;
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 0 0;
 `
 
 export const Contact = styled.p`

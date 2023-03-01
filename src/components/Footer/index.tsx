@@ -13,7 +13,7 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
-import Logo from "../../assets/logo.png";
+import Logo from "../../../public/images/logo.png";
 
 const Footer = () => {
   return (
