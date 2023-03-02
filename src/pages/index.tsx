@@ -4,8 +4,25 @@ import styled from "styled-components";
 import Banner from "@/components/Banner";
 import BannerImage from "../../public/images/BANNER01.png";
 import Products from "@/components/Products";
+import { GetServerSideProps } from "next";
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const api = "https://imagineshopapi.fly.dev";
+  const result = await fetch(`${api}/products`);
+  const data = await result.json();
+  data.forEach((product: any) => {
+    product.image = `${api}/uploads/${product.fileName}`;
+    product.formattedPrice = (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })).format(product.price)
+    product.splitPrice = (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })).format(product.price/10)
+  })
+  return {
+    props: {
+      productsApi: data
+    }
+  }
+}
+
+export default function Home({ productsApi }: any) {
   return (
     <>
       <Head>
@@ -17,7 +34,7 @@ export default function Home() {
 
       <Main>
         <Banner image={BannerImage} width={1140} height={325} />
-        <Products products={[]}></Products>
+        <Products products={productsApi}></Products>
       </Main>
     </>
   );

@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['imagineshopapi.fly.dev']
+  }
 }
 
 module.exports = nextConfig

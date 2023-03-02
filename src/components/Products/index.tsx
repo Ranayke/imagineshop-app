@@ -11,11 +11,16 @@ import {
 } from "./styles";
 
 interface Product {
+  _id: string;
   name: string;
+  image: string;
+  price: number;
+  formattedPrice: string;
+  splitPrice: string;
 }
 
 interface ProductsProps {
-  products: any[];
+  products: Product[];
 }
 
 const Products = ({ products }: ProductsProps) => {
@@ -26,16 +31,26 @@ const Products = ({ products }: ProductsProps) => {
       </Title>
 
       <ProductList>
+        {products &&
+          products.map((product) => (
 
-        <ProductItem>
-          <Link href="/">
-            <Image src="" alt="Product image" width={230} height={230}/>
-            <ProductName>Nome</ProductName>
-            <ProductPrice>Preço</ProductPrice>
-            <ProductSplitPrice>Parcela</ProductSplitPrice>
-          </Link>
-        </ProductItem>
-
+            <Link href="/">
+              <ProductItem key={product._id}>
+                <Image
+                  src={product.image}
+                  alt="Product image"
+                  width={230}
+                  height={230}
+                />
+                <ProductName>{product.name}</ProductName>
+                <ProductPrice>{product.formattedPrice}</ProductPrice>
+                <ProductSplitPrice>
+                  10x de {product.splitPrice} sem juros
+                </ProductSplitPrice>
+              </ProductItem>
+            </Link>
+            
+          ))}
       </ProductList>
     </ProductContainer>
   );

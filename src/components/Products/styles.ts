@@ -21,6 +21,11 @@ export const ProductList = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 1.875rem;
     margin-bottom: 11.25rem;
+    
+    a {
+        color: #000;
+        text-decoration: none;
+    }
 `;
 
 export const ProductItem = styled.div`
@@ -29,11 +34,6 @@ export const ProductItem = styled.div`
     border-radius: 4px;
     box-shadow: 5px 0px 10px #d9d9d9;
     padding: 1rem;
-
-    a {
-        text-decoration: none;
-        color: #000;
-    };
 
     &:hover {
         box-shadow: 5px 10px 10px #d9d9d9;
