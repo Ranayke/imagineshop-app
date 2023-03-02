@@ -2,7 +2,8 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import Banner from "@/components/Banner";
-import BannerImage from "../../public/images/BANNER01.png"
+import BannerImage from "../../public/images/BANNER01.png";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -13,15 +14,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.ico" />
       </Head>
-      
-      <Main>
-        <Banner image={BannerImage} width={1140} height={325}/>
-      </Main>
 
+      <Main>
+        <Banner image={BannerImage} width={1140} height={325} />
+        <Products products={[]}></Products>
+      </Main>
     </>
   );
 }
 
 const Main = styled.main`
   min-height: 59vh;
-`
+`;
