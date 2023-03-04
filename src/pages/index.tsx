@@ -1,10 +1,7 @@
 import Head from "next/head";
-import styled from "styled-components";
-
-import Banner from "@/components/Banner";
-import BannerImage from "../../public/images/BANNER01.png";
-import Products from "@/components/Products";
 import { GetServerSideProps } from "next";
+
+import Dashboard from "./dashboard";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const api = "https://imagineshopapi.fly.dev";
@@ -12,17 +9,23 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const data = await result.json();
   data.forEach((product: any) => {
     product.image = `${api}/uploads/${product.fileName}`;
-    product.formattedPrice = (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })).format(product.price)
-    product.splitPrice = (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })).format(product.price/10)
-  })
+    product.formattedPrice = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(product.price);
+    product.splitPrice = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(product.price / 10);
+  });
   return {
     props: {
-      productsApi: data
-    }
-  }
-}
+      productsApi: data,
+    },
+  };
+};
 
-export default function Home({ productsApi }: any) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -31,15 +34,7 @@ export default function Home({ productsApi }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.ico" />
       </Head>
-
-      <Main>
-        <Banner image={BannerImage} width={1140} height={325} />
-        <Products products={productsApi}></Products>
-      </Main>
+      <Dashboard />
     </>
   );
 }
-
-const Main = styled.main`
-  min-height: 59vh;
-`;

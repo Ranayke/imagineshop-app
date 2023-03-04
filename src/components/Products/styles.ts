@@ -11,6 +11,7 @@ export const Title = styled.p`
     font-weight: 700;
     margin-top: 3.125rem;
     margin-bottom: 2.8rem;
+    
     span {
         text-decoration: underline ${({ theme }) => theme.colors.primary}
     }
@@ -45,18 +46,15 @@ export const ProductItem = styled.div`
 
 export const ProductName = styled.p`
     font-size: 0.875rem;
-    cursor: pointer;
 `;
 
 export const ProductPrice = styled.p`
     font-size: 1.125rem;
     font-weight: 700;
-    cursor: pointer;
 `;
 
 export const ProductSplitPrice = styled.small`
     font-size: 0.75rem;
     font-weight: 700;
     color: #999;
-    cursor: pointer;
 `;
