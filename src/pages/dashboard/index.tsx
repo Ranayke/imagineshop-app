@@ -4,11 +4,11 @@ import { Main } from "./styles";
 
 import BannerImage from "../../../public/images/BANNER01.png";
 
-export default function Dashboard({ productsApi }: any) {
+export default function Dashboard({ productList }: any) {
   return (
       <Main>
         <Banner image={BannerImage} width={1140} height={325} />
-        <Products products={productsApi}></Products>
+        <Products products={productList}></Products>
       </Main>
   );
 }
