@@ -34,7 +34,7 @@ const Products = ({ products }: ProductsProps) => {
         {products &&
           products.map((product) => (
 
-            <Link href="/">
+            <Link href={`/products/${product._id}`}>
               <ProductItem key={product._id}>
                 <Image
                   src={product.image}
