@@ -10,7 +10,14 @@ const Header = () => {
   return (
     <StyledHeader>
       <NavBar>
-        <Image src={Logo} alt="Logo da ImagineShop" width={200} height={100} />
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="Logo da ImagineShop"
+            width={200}
+            height={100}
+          />
+        </Link>
         <MenuList>
           <MenuItem>
             <Link href="/">Home</Link>

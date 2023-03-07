@@ -14,7 +14,9 @@ import {
 
 import Banner from "@/components/Banner";
 import BannerImage from "../../../public/images/banner2.png";
+import CartIcon from "../../../public/images/shopping-cart-white.png";
 import Image from "next/image";
+import Head from "next/head";
 
 interface Product {
   _id: string;
@@ -57,6 +59,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function ProductId({ product }: ProductsProps) {
   return (
     <>
+      <Head>
+        <title>ImagineShop - {product.name}</title>
+        <meta name="description" content="Product detail" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <ProductContainer>
         <Banner image={BannerImage} width={1140} height={145} />
 
@@ -76,7 +85,10 @@ export default function ProductId({ product }: ProductsProps) {
             <ProductSplitPrice>
               10x de {product.splitPrice} sem juros
             </ProductSplitPrice>
-            <Button>Adicionar ao carrinho</Button>
+            <Button>
+              <Image alt="shopping cart image" src={CartIcon} width={22} height={22}></Image>
+              <p>Adicionar ao carrinho</p>
+            </Button>
             <ProductDescription>{product.description}</ProductDescription>
           </div>
         </ProductDetail>
