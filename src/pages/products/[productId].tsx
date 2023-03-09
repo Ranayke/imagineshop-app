@@ -1,4 +1,12 @@
 import { GetServerSideProps } from "next";
+import Image from "next/image";
+import Head from "next/head";
+import { useContext } from "react";
+
+import Banner from "@/components/Banner";
+import BannerImage from "../../../public/images/banner2.png";
+import CartIcon from "../../../public/images/shopping-cart-white.png";
+import { IProduct } from "@/types";
 import {
   Button,
   ImageContainer,
@@ -11,34 +19,17 @@ import {
   Summary,
   SummaryTitle,
 } from "./styles";
-
-import Banner from "@/components/Banner";
-import BannerImage from "../../../public/images/banner2.png";
-import CartIcon from "../../../public/images/shopping-cart-white.png";
-import Image from "next/image";
-import Head from "next/head";
-
-interface Product {
-  _id: string;
-  name: string;
-  image: string;
-  price: number;
-  formattedPrice: string;
-  splitPrice: string;
-  fileName: string;
-  description: string;
-  summary: string;
-}
+import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 
 interface ProductsProps {
-  product: Product;
+  product: IProduct;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const productId = ctx.params?.productId;
   const api = "https://imagineshopapi.fly.dev";
   const result = await fetch(`${api}/products/${productId}`);
-  const product: Product = await result.json();
+  const product: IProduct = await result.json();
 
   product.image = `${api}/uploads/${product.fileName}`;
   product.formattedPrice = new Intl.NumberFormat("pt-BR", {
@@ -57,6 +48,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 export default function ProductId({ product }: ProductsProps) {
+
+  const { addProduct } = useContext(ShoppingCartContext)
+
+  const addProductInShoppingCart = (product: IProduct) => {
+    addProduct(product)
+  }
+
   return (
     <>
       <Head>
@@ -85,8 +83,13 @@ export default function ProductId({ product }: ProductsProps) {
             <ProductSplitPrice>
               10x de {product.splitPrice} sem juros
             </ProductSplitPrice>
-            <Button>
-              <Image alt="shopping cart image" src={CartIcon} width={22} height={22}></Image>
+            <Button onClick={() => addProductInShoppingCart(product)}>
+              <Image
+                alt="shopping cart image"
+                src={CartIcon}
+                width={22}
+                height={22}
+              ></Image>
               <p>Adicionar ao carrinho</p>
             </Button>
             <ProductDescription>{product.description}</ProductDescription>

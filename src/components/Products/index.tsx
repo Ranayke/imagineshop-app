@@ -1,3 +1,4 @@
+import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,17 +11,8 @@ import {
   Title,
 } from "./styles";
 
-interface Product {
-  _id: string;
-  name: string;
-  image: string;
-  price: number;
-  formattedPrice: string;
-  splitPrice: string;
-}
-
 interface ProductsProps {
-  products: Product[];
+  products: IProduct[];
 }
 
 const Products = ({ products }: ProductsProps) => {
@@ -33,7 +25,6 @@ const Products = ({ products }: ProductsProps) => {
       <ProductList>
         {products &&
           products.map((product) => (
-
             <Link href={`/products/${product._id}`}>
               <ProductItem key={product._id}>
                 <Image
@@ -49,7 +40,6 @@ const Products = ({ products }: ProductsProps) => {
                 </ProductSplitPrice>
               </ProductItem>
             </Link>
-            
           ))}
       </ProductList>
     </ProductContainer>

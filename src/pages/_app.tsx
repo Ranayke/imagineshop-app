@@ -6,6 +6,7 @@ config.autoAddCss = false;
 
 import GlobalStyle from "../components/globalstyles";
 import Layout from "@/components/Layout";
+import { ShoppingCartProvider } from "@/contexts/ShoppingCartContext";
 
 const theme: DefaultTheme = {
   colors: {
@@ -19,9 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ShoppingCartProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ShoppingCartProvider>
       </ThemeProvider>
     </>
   );
