@@ -4,20 +4,27 @@ import Head from "next/head";
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { IProduct } from "@/types";
 import {
+  Button,
   ButtonContainer,
   DeleteIcon,
+  InputGroup,
+  LoginTitle,
   Main,
+  PaymentShipping,
+  PaymentTitle,
+  PaymentTotal,
+  PaymentValue,
   Product,
   ProductName,
   ProductPrice,
   Separator,
   ShoppingCartContainer,
+  ShoppingCartPayment,
   ShoppingCartProducts,
   SubTitle,
   Title,
 } from "./styles";
 import Image from "next/image";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingCart() {
   const { getProducts } = useContext(ShoppingCartContext);
@@ -47,15 +54,13 @@ export default function ShoppingCart() {
               products.map((product, index) => (
                 <div key={index}>
                   <ButtonContainer>
-                    <button>
-                      <DeleteIcon icon={faX} size="2x"/>
-                    </button>
+                    <button>X</button>
                   </ButtonContainer>
                   <Product>
                     <div>
                       <Image
                         src={product.image}
-                        width={200}
+                        width={180}
                         height={200}
                         alt="Imagem do produto"
                       />
@@ -67,6 +72,28 @@ export default function ShoppingCart() {
                 </div>
               ))}
           </ShoppingCartProducts>
+
+          <section>
+            <ShoppingCartPayment>
+              <PaymentTitle>1. Resumo do pedido</PaymentTitle>
+              <PaymentValue>
+                <span>{products.length} Produtos </span> <span>R$ 0.000</span>
+              </PaymentValue>
+              <PaymentShipping><span>Frete </span> <span>R$ 0.000</span></PaymentShipping>
+              <PaymentTotal><span>Total </span> <span>R$ 0.000</span></PaymentTotal>
+              <Separator />
+              <LoginTitle>2. Login</LoginTitle>
+              <InputGroup>
+                <span>E-MAIL:</span>
+                <input type="text" />
+              </InputGroup>
+              <InputGroup>
+                <span>SENHA:</span>
+                <input type="password" />
+              </InputGroup>
+              <Button>Continuar</Button>
+            </ShoppingCartPayment>
+          </section>
         </ShoppingCartContainer>
       </Main>
     </>
