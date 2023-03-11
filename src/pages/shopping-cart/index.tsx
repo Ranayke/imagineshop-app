@@ -5,8 +5,11 @@ import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { IProduct } from "@/types";
 import {
   ButtonContainer,
+  DeleteIcon,
   Main,
   Product,
+  ProductName,
+  ProductPrice,
   Separator,
   ShoppingCartContainer,
   ShoppingCartProducts,
@@ -14,6 +17,7 @@ import {
   Title,
 } from "./styles";
 import Image from "next/image";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingCart() {
   const { getProducts } = useContext(ShoppingCartContext);
@@ -38,11 +42,15 @@ export default function ShoppingCart() {
         <SubTitle>Produtos</SubTitle>
         <ShoppingCartContainer>
           <ShoppingCartProducts>
-            <Separator></Separator>
+            <Separator />
             {products &&
               products.map((product, index) => (
                 <div key={index}>
-                  <ButtonContainer>X</ButtonContainer>
+                  <ButtonContainer>
+                    <button>
+                      <DeleteIcon icon={faX} size="2x"/>
+                    </button>
+                  </ButtonContainer>
                   <Product>
                     <div>
                       <Image
@@ -52,7 +60,10 @@ export default function ShoppingCart() {
                         alt="Imagem do produto"
                       />
                     </div>
+                    <ProductName>{product.name}</ProductName>
+                    <ProductPrice>{product.formattedPrice}</ProductPrice>
                   </Product>
+                  <Separator />
                 </div>
               ))}
           </ShoppingCartProducts>
