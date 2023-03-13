@@ -20,6 +20,8 @@ export const ShoppingCartProvider = ({ children }: any) => {
 
   const addProduct = (product: IProduct) => {
     const products = getProducts();
+    const findProduct = products.find((prod) => prod._id === product._id);
+    if (findProduct) return;
     products.push(product);
     if (isBrowser) {
       sessionStorage.setItem(SESSION_STORAGE, JSON.stringify(products));
