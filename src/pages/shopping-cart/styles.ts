@@ -1,9 +1,10 @@
 import { Container } from "@/styles/utils"
-import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 
 export const Main = styled.main`
     ${Container}
+    color: #000;
 `
 
 export const Title = styled.p`
@@ -25,9 +26,7 @@ export const ShoppingCartContainer = styled.div`
     min-height: 800px;
 `
 
-export const ShoppingCartProducts = styled.section`
-
-`
+export const ShoppingCartProducts = styled.section``
 
 export const Separator = styled.hr`
     border: 1px solid #c8c9c3;
@@ -35,24 +34,19 @@ export const Separator = styled.hr`
 `
 
 export const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 0.8rem 0;
-    
-    button {
-        border: unset;
-        background: unset;
-        cursor: pointer;
-
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: ${({ theme }) => theme.colors.secondary};
-    }
-`
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.8rem 0;
+  button {
+    border: unset;
+    background: unset;
+    cursor: pointer;
+  }
+`;
 
 export const DeleteIcon = styled(FontAwesomeIcon)`
-    color: ${({ theme }) => theme.colors.secondary};
-    font-size: 1rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 1rem;
 `
 
 export const Product = styled.div`

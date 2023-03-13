@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { IProduct } from "@/types";
@@ -47,6 +48,10 @@ export default function ShoppingCart() {
     setRefresh((oldValue) => oldValue + 1);
   };
 
+  function pluralOrSingular(number: number) {
+    return number > 1 ? "Produtos" : "Produto";
+  }
+
   return products && products.length > 0 ? (
     <>
       <Head>
@@ -63,11 +68,11 @@ export default function ShoppingCart() {
           <ShoppingCartProducts>
             <Separator />
             {products &&
-              products.map((product, index) => (
-                <div key={index}>
+              products.map((product) => (
+                <div key={product._id}>
                   <ButtonContainer>
                     <button onClick={() => handleDeleteProduct(product._id)}>
-                      X
+                      <DeleteIcon icon={faX}></DeleteIcon>
                     </button>
                   </ButtonContainer>
                   <Product>
@@ -75,7 +80,7 @@ export default function ShoppingCart() {
                       <Image
                         src={product.image}
                         width={180}
-                        height={200}
+                        height={180}
                         alt="Imagem do produto"
                       />
                     </div>
@@ -91,7 +96,9 @@ export default function ShoppingCart() {
             <ShoppingCartPayment>
               <PaymentTitle>1. Resumo do pedido</PaymentTitle>
               <PaymentValue>
-                <span>{products.length} Produtos </span>{" "}
+                <span>
+                  {products.length} {pluralOrSingular(products.length)}{" "}
+                </span>{" "}
                 <span>{getTotalProducts()}</span>
               </PaymentValue>
               <PaymentShipping>
