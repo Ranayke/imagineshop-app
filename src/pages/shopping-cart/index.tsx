@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { IProduct } from "@/types";
 import {
   Button,
   ButtonContainer,
-  DeleteIcon,
   InputGroup,
   LoginTitle,
   Main,
@@ -72,7 +70,7 @@ export default function ShoppingCart() {
                 <div key={product._id}>
                   <ButtonContainer>
                     <button onClick={() => handleDeleteProduct(product._id)}>
-                      <DeleteIcon icon={faX}></DeleteIcon>
+                      X
                     </button>
                   </ButtonContainer>
                   <Product>

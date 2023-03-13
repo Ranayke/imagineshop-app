@@ -1,5 +1,4 @@
 import { Container } from "@/styles/utils"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 
 export const Main = styled.main`
@@ -38,16 +37,14 @@ export const ButtonContainer = styled.div`
   justify-content: flex-end;
   margin: 0.8rem 0;
   button {
+    color: ${({ theme }) => theme.colors.secondary};
     border: unset;
     background: unset;
     cursor: pointer;
+    font-size: 1.125rem;
+    font-weight: 700;
   }
 `;
-
-export const DeleteIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 1rem;
-`
 
 export const Product = styled.div`
     display: grid;
