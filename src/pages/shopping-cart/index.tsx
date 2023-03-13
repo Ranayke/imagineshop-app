@@ -27,13 +27,19 @@ import {
 import Image from "next/image";
 
 export default function ShoppingCart() {
-  const { getProducts } = useContext(ShoppingCartContext);
+  const { getProducts, deleteProduct } = useContext(ShoppingCartContext);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [refresh, setRefresh] = useState<number>(0);
 
   useEffect(() => {
     const values = getProducts();
     setProducts(values);
-  }, []);
+  }, [refresh]);
+
+  const handleDeleteProduct = (id: string) => {
+    deleteProduct(id);
+    setRefresh((oldValue) => oldValue + 1);
+  };
 
   return products && products.length > 0 ? (
     <>
@@ -54,7 +60,9 @@ export default function ShoppingCart() {
               products.map((product, index) => (
                 <div key={index}>
                   <ButtonContainer>
-                    <button>X</button>
+                    <button onClick={() => handleDeleteProduct(product._id)}>
+                      X
+                    </button>
                   </ButtonContainer>
                   <Product>
                     <div>
@@ -79,8 +87,12 @@ export default function ShoppingCart() {
               <PaymentValue>
                 <span>{products.length} Produtos </span> <span>R$ 0.000</span>
               </PaymentValue>
-              <PaymentShipping><span>Frete </span> <span>R$ 0.000</span></PaymentShipping>
-              <PaymentTotal><span>Total </span> <span>R$ 0.000</span></PaymentTotal>
+              <PaymentShipping>
+                <span>Frete </span> <span>R$ 0.000</span>
+              </PaymentShipping>
+              <PaymentTotal>
+                <span>Total </span> <span>R$ 0.000</span>
+              </PaymentTotal>
               <Separator />
               <LoginTitle>2. Login</LoginTitle>
               <InputGroup>

@@ -5,6 +5,7 @@ import { IProduct } from "@/types";
 interface ShoppingCart {
   addProduct: (product: IProduct) => void;
   getProducts: () => IProduct[];
+  deleteProduct: (id: string) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCart);
@@ -29,8 +30,18 @@ export const ShoppingCartProvider = ({ children }: any) => {
     return [];
   };
 
+  const deleteProduct = (id: string): void => {
+    let products = getProducts();
+    const newProducts = products.filter((product) => product._id !== id);
+    if (isBrowser) {
+      sessionStorage.setItem(SESSION_STORAGE, JSON.stringify(newProducts));
+    }
+  };
+
   return (
-    <ShoppingCartContext.Provider value={{ addProduct, getProducts }}>
+    <ShoppingCartContext.Provider
+      value={{ addProduct, getProducts, deleteProduct }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   );
