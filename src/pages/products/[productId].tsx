@@ -48,12 +48,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 export default function ProductId({ product }: ProductsProps) {
-
-  const { addProduct } = useContext(ShoppingCartContext)
+  const { addProduct } = useContext(ShoppingCartContext);
 
   const addProductInShoppingCart = (product: IProduct) => {
-    addProduct(product)
-  }
+    addProduct(product);
+  };
 
   return (
     <>

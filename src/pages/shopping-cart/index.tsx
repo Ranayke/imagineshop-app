@@ -27,7 +27,13 @@ import {
 import Image from "next/image";
 
 export default function ShoppingCart() {
-  const { getProducts, deleteProduct } = useContext(ShoppingCartContext);
+  const {
+    getProducts,
+    deleteProduct,
+    getTotalValue,
+    getTotalProducts,
+    getShippingValue,
+  } = useContext(ShoppingCartContext);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
 
@@ -85,13 +91,14 @@ export default function ShoppingCart() {
             <ShoppingCartPayment>
               <PaymentTitle>1. Resumo do pedido</PaymentTitle>
               <PaymentValue>
-                <span>{products.length} Produtos </span> <span>R$ 0.000</span>
+                <span>{products.length} Produtos </span>{" "}
+                <span>{getTotalProducts()}</span>
               </PaymentValue>
               <PaymentShipping>
-                <span>Frete </span> <span>R$ 0.000</span>
+                <span>Frete </span> <span>{getShippingValue()}</span>
               </PaymentShipping>
               <PaymentTotal>
-                <span>Total </span> <span>R$ 0.000</span>
+                <span>Total </span> <span>{getTotalValue()}</span>
               </PaymentTotal>
               <Separator />
               <LoginTitle>2. Login</LoginTitle>
