@@ -56,7 +56,19 @@ export default function ShoppingCart() {
     event.preventDefault();
     const api = "https://imagineshopapi.fly.dev";
     const token = await getTokenLogin(api, email, password);
+    if (!token) {
+      console.log("login invalido");
+      return;
+    }
+    const productIds: string[] = [];
+    products.map((product) => productIds.push(product._id));
+    const sell = await sellProducts(api, token, productIds);
     console.log(token);
+    if (!token) {
+      console.log("compra invalida");
+      return;
+    }
+    console.log("comprado com sucesso");
   };
 
   const getTokenLogin = async (
@@ -74,6 +86,25 @@ export default function ShoppingCart() {
     }
     const { token } = await result.json();
     return token;
+  };
+
+  const sellProducts = async (
+    api: string,
+    token: string,
+    products: string[]
+  ): Promise<string | null> => {
+    const result = await fetch(`${api}/products/sell`, {
+      method: "POST",
+      body: JSON.stringify({ products }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (result.status !== 200) {
+      return null;
+    }
+    return "Sucess";
   };
 
   return products && products.length > 0 ? (
