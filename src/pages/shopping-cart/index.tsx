@@ -35,6 +35,8 @@ export default function ShoppingCart() {
   } = useContext(ShoppingCartContext);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
     const values = getProducts();
@@ -49,6 +51,30 @@ export default function ShoppingCart() {
   function pluralOrSingular(number: number) {
     return number > 1 ? "Produtos" : "Produto";
   }
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    const api = "https://imagineshopapi.fly.dev";
+    const token = await getTokenLogin(api, email, password);
+    console.log(token);
+  };
+
+  const getTokenLogin = async (
+    api: string,
+    email: string,
+    password: string
+  ): Promise<string | null> => {
+    const result = await fetch(`${api}/login`, {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-type": "application/json" },
+    });
+    if (result.status !== 200) {
+      return null;
+    }
+    const { token } = await result.json();
+    return token;
+  };
 
   return products && products.length > 0 ? (
     <>
@@ -109,13 +135,23 @@ export default function ShoppingCart() {
               <LoginTitle>2. Login</LoginTitle>
               <InputGroup>
                 <span>E-MAIL:</span>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={email || ""}
+                  onChange={(e) => setEmail(e.currentTarget.value)}
+                />
               </InputGroup>
               <InputGroup>
                 <span>SENHA:</span>
-                <input type="password" />
+                <input
+                  type="password"
+                  value={password || ""}
+                  onChange={(e) => setPassword(e.currentTarget.value)}
+                />
               </InputGroup>
-              <Button>Continuar</Button>
+              <Button type="submit" onClick={handleSubmit}>
+                Continuar
+              </Button>
             </ShoppingCartPayment>
           </section>
         </ShoppingCartContainer>
