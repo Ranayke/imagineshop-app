@@ -9,6 +9,7 @@ interface ShoppingCart {
   getTotalValue: () => string;
   getTotalProducts: () => string;
   getShippingValue: () => string;
+  clearAll: () => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCart);
@@ -69,6 +70,12 @@ export const ShoppingCartProvider = ({ children }: any) => {
     }).format(ShippingValue);
   };
 
+  const clearAll = (): void => {
+    if (isBrowser) {
+      sessionStorage.clear();
+    }
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -78,6 +85,7 @@ export const ShoppingCartProvider = ({ children }: any) => {
         getTotalValue,
         getTotalProducts,
         getShippingValue,
+        clearAll,
       }}
     >
       {children}

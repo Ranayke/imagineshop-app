@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
@@ -32,11 +33,13 @@ export default function ShoppingCart() {
     getTotalValue,
     getTotalProducts,
     getShippingValue,
+    clearAll,
   } = useContext(ShoppingCartContext);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     const values = getProducts();
@@ -69,6 +72,8 @@ export default function ShoppingCart() {
       return;
     }
     console.log("comprado com sucesso");
+    clearAll();
+    router.push("/success");
   };
 
   const getTokenLogin = async (
