@@ -232,7 +232,54 @@ export default function ShoppingCart() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Sem produto</h1>
+      <Main>
+        <Title>Meu Carrinho</Title>
+        <SubTitle>Carrinho de compras vazio!</SubTitle>
+        <ShoppingCartContainer>
+          <ShoppingCartProducts></ShoppingCartProducts>
+
+          <section>
+            <ShoppingCartPayment>
+              <PaymentTitle>1. Resumo do pedido</PaymentTitle>
+              <PaymentValue>
+                <span>
+                  {products.length} {pluralOrSingular(products.length)}{" "}
+                </span>{" "}
+                <span>{getTotalProducts()}</span>
+              </PaymentValue>
+              <PaymentShipping>
+                <span>Frete </span> <span>R$ 0,00</span>
+              </PaymentShipping>
+              <PaymentTotal>
+                <span>Total </span> <span>R$ 0,00</span>
+              </PaymentTotal>
+              <Separator />
+              <LoginTitle>2. Login</LoginTitle>
+              <InputGroup>
+                <span>E-MAIL:</span>
+                <input
+                  readOnly
+                  type="text"
+                  value={email || ""}
+                  onChange={(e) => setEmail(e.currentTarget.value)}
+                />
+              </InputGroup>
+              <InputGroup>
+                <span>SENHA:</span>
+                <input
+                  readOnly
+                  type="password"
+                  value={password || ""}
+                  onChange={(e) => setPassword(e.currentTarget.value)}
+                />
+              </InputGroup>
+              <Button type="submit" onClick={handleSubmit}>
+                Continuar
+              </Button>
+            </ShoppingCartPayment>
+          </section>
+        </ShoppingCartContainer>
+      </Main>
     </>
   );
 }
