@@ -9,7 +9,7 @@ export const Main = styled.main`
 export const Title = styled.p`
     font-size: 1.875rem;
     font-weight: 700;
-    margin: 5.625rem 0;
+    margin: 4rem 0;
 `
 
 export const SubTitle = styled.p`
@@ -22,7 +22,7 @@ export const ShoppingCartContainer = styled.div`
     display: grid;
     grid-template-columns: 780px auto;
     gap: 1.5rem;
-    min-height: 800px;
+    min-height: 700px;
 `
 
 export const ShoppingCartProducts = styled.section``

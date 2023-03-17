@@ -12,7 +12,6 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-
 import Logo from "../../../public/images/logo.png";
 
 const Footer = () => {

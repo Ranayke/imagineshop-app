@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledFooter = styled.footer`
-  height: 12.5rem;
-  background-color: #f4f4f4;
+    height: 12.5rem;
+    background-color: #f4f4f4;
 `;
 
 export const FooterContainer = styled.div`
@@ -31,6 +31,7 @@ export const SocialNetworksList = styled.ul`
 `
 
 export const SocialNetworkIcon = styled(FontAwesomeIcon)`
-color: ${({theme}) => theme.colors.secondary};
-font-size: 1.875rem;
+    color: ${({theme}) => theme.colors.secondary};
+    font-size: 1.875rem;
+    cursor: pointer;
 `

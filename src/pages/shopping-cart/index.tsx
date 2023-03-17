@@ -87,7 +87,6 @@ export default function ShoppingCart() {
     const productIds: string[] = [];
     products.map((product) => productIds.push(product._id));
     const sell = await sellProducts(api, token, productIds);
-    console.log(token);
     if (!sell) {
       toast.error("Compra inválida.", {
         position: "bottom-right",
@@ -242,10 +241,8 @@ export default function ShoppingCart() {
             <ShoppingCartPayment>
               <PaymentTitle>1. Resumo do pedido</PaymentTitle>
               <PaymentValue>
-                <span>
-                  {products.length} {pluralOrSingular(products.length)}{" "}
-                </span>{" "}
-                <span>{getTotalProducts()}</span>
+                <span>0 Produtos</span>
+                <span>R$ 0,00</span>
               </PaymentValue>
               <PaymentShipping>
                 <span>Frete </span> <span>R$ 0,00</span>
@@ -257,25 +254,13 @@ export default function ShoppingCart() {
               <LoginTitle>2. Login</LoginTitle>
               <InputGroup>
                 <span>E-MAIL:</span>
-                <input
-                  readOnly
-                  type="text"
-                  value={email || ""}
-                  onChange={(e) => setEmail(e.currentTarget.value)}
-                />
+                <input readOnly />
               </InputGroup>
               <InputGroup>
                 <span>SENHA:</span>
-                <input
-                  readOnly
-                  type="password"
-                  value={password || ""}
-                  onChange={(e) => setPassword(e.currentTarget.value)}
-                />
+                <input readOnly />
               </InputGroup>
-              <Button type="submit" onClick={handleSubmit}>
-                Continuar
-              </Button>
+              <Button type="submit">Continuar</Button>
             </ShoppingCartPayment>
           </section>
         </ShoppingCartContainer>
