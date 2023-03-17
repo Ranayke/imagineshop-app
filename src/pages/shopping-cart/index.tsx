@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { IProduct } from "@/types";
@@ -47,6 +49,16 @@ export default function ShoppingCart() {
   }, [refresh]);
 
   const handleDeleteProduct = (id: string) => {
+    toast.success("Produto removido do carrinho.", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     deleteProduct(id);
     setRefresh((oldValue) => oldValue + 1);
   };
@@ -60,18 +72,35 @@ export default function ShoppingCart() {
     const api = "https://imagineshopapi.fly.dev";
     const token = await getTokenLogin(api, email, password);
     if (!token) {
-      console.log("login invalido");
+      toast.error("Login inválido.", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     const productIds: string[] = [];
     products.map((product) => productIds.push(product._id));
     const sell = await sellProducts(api, token, productIds);
     console.log(token);
-    if (!token) {
-      console.log("compra invalida");
+    if (!sell) {
+      toast.error("Compra inválida.", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
-    console.log("comprado com sucesso");
     clearAll();
     router.push("/success");
   };
@@ -192,6 +221,7 @@ export default function ShoppingCart() {
           </section>
         </ShoppingCartContainer>
       </Main>
+      <ToastContainer />
     </>
   ) : (
     <>

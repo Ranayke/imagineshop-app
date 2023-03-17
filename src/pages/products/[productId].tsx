@@ -2,6 +2,8 @@ import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Banner from "@/components/Banner";
 import BannerImage from "../../../public/images/banner2.png";
@@ -51,6 +53,16 @@ export default function ProductId({ product }: ProductsProps) {
   const { addProduct } = useContext(ShoppingCartContext);
 
   const addProductInShoppingCart = (product: IProduct) => {
+    toast.success("Produto adicionado ao carrinho!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     addProduct(product);
   };
 
@@ -99,6 +111,7 @@ export default function ProductId({ product }: ProductsProps) {
         </SummaryTitle>
         <Summary>{product.summary}</Summary>
       </ProductContainer>
+      <ToastContainer />
     </>
   );
 }
